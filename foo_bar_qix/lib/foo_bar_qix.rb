@@ -16,9 +16,14 @@ class FooBarQix
 
 
   def check_dividers
-    @result += "Foo" if @number % 3 == 0
-    @result += "Bar" if @number % 5 == 0
-    @result += "Qix" if @number % 7 == 0
+    @result += "Foo" if divided_by?(3)
+    @result += "Bar" if divided_by?(5)
+    @result += "Qix" if divided_by?(7)
+  end
+
+
+  def divided_by?(divider)
+    @number % divider == 0
   end
 
 
@@ -31,9 +36,9 @@ class FooBarQix
 
   def digits_to_use
     if @result.empty?
-      @number.to_s.split("")
+      @number.to_s.chars
     else
-      @number.to_s.split("").select { |digit| ["3", "5", "7", "0"].include?(digit) }
+      @number.to_s.chars.select { |digit| ["3", "5", "7", "0"].include?(digit) }
     end
   end
 
